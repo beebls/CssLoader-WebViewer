@@ -7,9 +7,12 @@ import { useEffect, useMemo, useState } from "react";
 export default function Home() {
   const [themeArr, setThemeArr] = useState([]);
 
-  // const data = fetch("https://cors-anywhere.herokuapp.com/https://github.com/suchmememanyskill/CssLoader-ThemeDb/releases/download/1.0.0/themes.json")
-  //   .then((res) => res.json())
-  //   .then((data) => setThemeArr(data));
+  const data = fetch(
+    "https://github.com/suchmememanyskill/CssLoader-ThemeDb/releases/download/1.0.0/themes.json"
+  )
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+  console.log(data);
 
   useEffect(() => {
     setThemeArr([
