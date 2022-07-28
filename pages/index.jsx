@@ -8,7 +8,9 @@ export default function Home() {
   const [themeArr, setThemeArr] = useState([]);
 
   const data = fetch(
-    "https://github.com/suchmememanyskill/CssLoader-ThemeDb/releases/download/1.0.0/themes.json"
+    "https://github.com/suchmememanyskill/CssLoader-ThemeDb/releases/download/1.0.0/themes.json". {
+      mode: "no-cors"
+    }
   )
     .then((res) => res.json())
     .then((data) => console.log(data));
