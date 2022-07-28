@@ -98,15 +98,27 @@ export default function Home() {
         target: "Library",
       },
       {
-        id: "477b11812fce9ca17031898f1face8e7e3eed7a56db031870862e81ce6b83a52",
+        id: "01d1d2c3ac29f29334320a2ed6fa8de99c5c5b5f781fca4df3be4a1c3c24ac09",
         download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/477b11812fce9ca17031898f1face8e7e3eed7a56db031870862e81ce6b83a52.zip",
+          "https://s3.eu-central-003.backblazeb2.com/deck-themes/01d1d2c3ac29f29334320a2ed6fa8de99c5c5b5f781fca4df3be4a1c3c24ac09.zip",
+        preview_image:
+          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Fonts.jpg",
+        name: "Fonts",
+        version: "1.0",
+        author: "EMERALD#0874",
+        last_changed: "2022-07-27T23:38:54-05:00",
+        target: "System-Wide",
+      },
+      {
+        id: "1a56749a70601b0a0bdb05e4c1d9c2322995702478678abfe5375a2b6005377e",
+        download_url:
+          "https://s3.eu-central-003.backblazeb2.com/deck-themes/1a56749a70601b0a0bdb05e4c1d9c2322995702478678abfe5375a2b6005377e.zip",
         preview_image:
           "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Galactic.jpg",
         name: "Galactic",
-        version: "1.0",
+        version: "1.1",
         author: "EMERALD#0874",
-        last_changed: "2022-07-26T11:51:55-05:00",
+        last_changed: "2022-07-27T23:38:54-05:00",
         target: "System-Wide",
       },
       {
@@ -122,15 +134,15 @@ export default function Home() {
         target: "Library",
       },
       {
-        id: "c2a9c8f75a36b6485852fbf7ffd0729326ee21fa59263814d0661e14da45296a",
+        id: "204f20e8b57ee868aa8bda0e91fe99d0cae8d0cd72387435c53ca7955f48b582",
         download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/c2a9c8f75a36b6485852fbf7ffd0729326ee21fa59263814d0661e14da45296a.zip",
+          "https://s3.eu-central-003.backblazeb2.com/deck-themes/204f20e8b57ee868aa8bda0e91fe99d0cae8d0cd72387435c53ca7955f48b582.zip",
         preview_image:
           "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Obsidian.jpg",
         name: "Obsidian",
         version: "1.0",
         author: "EMERALD#0874",
-        last_changed: "2022-07-26T11:51:55-05:00",
+        last_changed: "2022-07-27T23:38:54-05:00",
         target: "System-Wide",
       },
       {
@@ -146,15 +158,15 @@ export default function Home() {
         target: "Keyboard",
       },
       {
-        id: "8a5ee5d1e3dced9882e79059323b3a0951374ef326348e8a203bea60c9c1a514",
+        id: "e342f1c8dc3ec48ee0f00dcd12ab4747d94b9248ea1b07f68bbc142433077c09",
         download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/8a5ee5d1e3dced9882e79059323b3a0951374ef326348e8a203bea60c9c1a514.zip",
+          "https://s3.eu-central-003.backblazeb2.com/deck-themes/e342f1c8dc3ec48ee0f00dcd12ab4747d94b9248ea1b07f68bbc142433077c09.zip",
         preview_image:
           "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Round.jpg",
         name: "Round",
-        version: "1.1",
+        version: "1.2",
         author: "EMERALD#0874",
-        last_changed: "2022-07-26T12:24:48-05:00",
+        last_changed: "2022-07-27T23:38:54-05:00",
         target: "System-Wide",
       },
       {
@@ -218,9 +230,10 @@ export default function Home() {
     []
   );
 
+  const [modalImgUrl, setModalImg] = useState("");
+
   const [selectedSort, setSort] = useState(1);
   const [searchFieldValue, setSearch] = useState("");
-
   const [selectedTarget, setTarget] = useState({
     data: 1,
     label: "Any",
@@ -251,13 +264,13 @@ export default function Home() {
   }, [themeArr, searchFilter]);
 
   return (
-    <div className='h-full pb-5 w-screen'>
+    <div className='h-full pb-5'>
       <Head>
         <title>CssLoader - Theme Browser</title>
       </Head>
-      <main className='w-screen flex flex-col items-center justify-center'>
-        <div className='flex justify-center p-5'>
-          <h1 className='text-5xl font-extrabold text-center'>
+      <main className='flex flex-col items-center justify-center'>
+        <div className='flex justify-center p-5 flex-col items-center'>
+          <h1 className='text-3xl md:text-5xl font-extrabold text-center'>
             CssLoader Theme Browser
           </h1>
         </div>
@@ -269,7 +282,7 @@ export default function Home() {
             placeholder='Search'
             className='bg-gradient-to-tl from-zinc-700 to-zinc-500 px-5 py-2 rounded-3xl border-slate-800 shadow-lg text-zinc-900 placeholder:text-zinc-900 placeholder:text-center placeholder:text-lg caret-zinc-200'
           />
-          <div className='md:px-8'>
+          <div className='md:px-8 py-4 md:py-0'>
             <span className='font-bold pr-4'>Sort By:</span>
             <select
               onChange={(e) => setSort(Number(e.target.value))}
@@ -326,102 +339,123 @@ export default function Home() {
                 ? true
                 : e.target === selectedTarget.label
             )
-            .map((e) => {
+            .map((e, i) => {
               return (
                 // The outer 2 most divs are the background darkened/blurred image, and everything inside is the text/image/buttons
-                <div
-                  key={`Theme_${e.name}`}
-                  className='CssLoader_ThemeBrowser_SingleItem_BgImage md:w-[260px] w-full'
-                  style={{
-                    backgroundImage: 'url("' + e.preview_image + '")',
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    borderRadius: "5px",
-                    marginLeft: "10px",
-                    marginRight: "10px",
-                    marginBottom: "20px",
-                  }}>
-                  <div
-                    className='CssLoader_ThemeBrowser_SingleItem_BgOverlay'
+                <>
+                  <article
+                    key={`Theme_${e.name}`}
+                    className='CssLoader_ThemeBrowser_SingleItem_BgImage md:w-[260px] w-full'
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      background: "RGBA(0,0,0,0.8)",
-                      backdropFilter: "blur(5px)",
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "3px",
+                      backgroundImage: 'url("' + e.preview_image + '")',
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                      borderRadius: "5px",
+                      marginLeft: "10px",
+                      marginRight: "10px",
+                      marginBottom: "20px",
                     }}>
-                    <span
-                      className='CssLoader_ThemeBrowser_SingleItem_ThemeName'
-                      style={{
-                        marginTop: "5px",
-                        fontSize: "1.5em",
-                        fontWeight: "bold",
-                      }}>
-                      {e.name}
-                    </span>
-                    {selectedTarget.label === "Any" && (
-                      <span
-                        className='CssLoader_ThemeBrowser_SingleItem_ThemeTarget'
-                        style={{
-                          marginTop: "-6px",
-                          fontSize: "1em",
-                          textShadow: "rgb(48, 48, 48) 0px 0 10px",
-                        }}>
-                        {e.target}
-                      </span>
-                    )}
                     <div
-                      className='CssLoader_ThemeBrowser_SingleItem_PreviewImage'
+                      className='CssLoader_ThemeBrowser_SingleItem_BgOverlay'
                       style={{
-                        width: "240px",
-                        backgroundImage: 'url("' + e.preview_image + '")',
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        height: "150px",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                      }}
-                    />
-                    <div
-                      className='CssLoader_ThemeBrowser_SingleItem_AuthorVersionContainer'
-                      style={{
-                        width: "240px",
-                        textAlign: "center",
-                        display: "flex",
+                        background: "RGBA(0,0,0,0.8)",
+                        backdropFilter: "blur(5px)",
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "3px",
                       }}>
                       <span
-                        className='CssLoader_ThemeBrowser_SingleItem_AuthorText'
+                        className='CssLoader_ThemeBrowser_SingleItem_ThemeName'
                         style={{
-                          marginRight: "auto",
-                          fontSize: "1em",
-                          textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                          marginTop: "5px",
+                          fontSize: "1.5em",
+                          fontWeight: "bold",
                         }}>
-                        {e.author}
+                        {e.name}
                       </span>
-                      <span
-                        className='CssLoader_ThemeBrowser_SingleItem_VersionText'
+                      {selectedTarget.label === "Any" && (
+                        <span
+                          className='CssLoader_ThemeBrowser_SingleItem_ThemeTarget'
+                          style={{
+                            marginTop: "-6px",
+                            fontSize: "1em",
+                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                          }}>
+                          {e.target}
+                        </span>
+                      )}
+                      <div
+                        className='CssLoader_ThemeBrowser_SingleItem_PreviewImage'
                         style={{
-                          marginLeft: "auto",
-                          fontSize: "1em",
-                          textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                          width: "240px",
+                          backgroundImage: 'url("' + e.preview_image + '")',
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          height: "150px",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      />
+                      <div
+                        className='CssLoader_ThemeBrowser_SingleItem_AuthorVersionContainer'
+                        style={{
+                          width: "240px",
+                          textAlign: "center",
+                          display: "flex",
                         }}>
-                        {e.version}
-                      </span>
+                        <span
+                          className='CssLoader_ThemeBrowser_SingleItem_AuthorText'
+                          style={{
+                            marginRight: "auto",
+                            fontSize: "1em",
+                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                          }}>
+                          {e.author}
+                        </span>
+                        <span
+                          className='CssLoader_ThemeBrowser_SingleItem_VersionText'
+                          style={{
+                            marginLeft: "auto",
+                            fontSize: "1em",
+                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                          }}>
+                          {e.version}
+                        </span>
+                      </div>
+                      <div
+                        className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
+                        style={{
+                          width: "245px",
+                        }}></div>
                     </div>
-                    <div
-                      className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
-                      style={{
-                        width: "245px",
-                      }}></div>
-                  </div>
-                </div>
+                  </article>
+                </>
               );
             })}
+        </div>
+        <div className='flex flex-col md:flex-row text-xl text-center'>
+          <a
+            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline'
+            onClick={() =>
+              window.open("https://github.com/suchmememanyskill/SDH-CssLoader")
+            }>
+            CssLoader Github
+          </a>
+          <div className='px-0 md:px-5' />
+          <a
+            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline'
+            onClick={() =>
+              window.open(
+                "https://github.com/suchmememanyskill/CssLoader-ThemeDb"
+              )
+            }>
+            Theme Database Github
+          </a>
         </div>
       </main>
     </div>
