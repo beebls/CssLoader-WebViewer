@@ -1,219 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
 
-import NextCors from "nextjs-cors";
 import { useEffect, useMemo, useState } from "react";
 
 export default function Home() {
   const [themeArr, setThemeArr] = useState([]);
 
+  async function getThemes() {
+    fetch(
+      "https://raw.githubusercontent.com/beebls/CssLoader-ThemeDb-Mirror/main/themes.json"
+    )
+      .then((res) => res.json())
+      .then((data) => setThemeArr(data));
+  }
+
   useEffect(() => {
-    setThemeArr([
-      {
-        id: "4778b3ca1bcd1e7326524f9ea1d5ea41d9fc79ed01d5257c10a8f912e7979764",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/4778b3ca1bcd1e7326524f9ea1d5ea41d9fc79ed01d5257c10a8f912e7979764.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/Party Wumpus/Astolfo Keyboard.jpg",
-        name: "Astolfo Keyboard",
-        version: "v4.0",
-        author: "Party Wumpus",
-        last_changed: "2022-07-22T03:11:44+02:00",
-        target: "Keyboard",
-      },
-      {
-        id: "c445664fbf24d5fb5bf7b81d103350279b619057ab523634d62af3296943e82d",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/c445664fbf24d5fb5bf7b81d103350279b619057ab523634d62af3296943e82d.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Centered Home.jpg",
-        name: "Centered Home",
-        version: "1.0",
-        author: "EMERALD#0874",
-        last_changed: "2022-07-26T11:52:48-05:00",
-        target: "Home",
-      },
-      {
-        id: "7da09e8823c05d021a72998dd9b948cfd124bb299e04186ffb11fec12f5d984b",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/7da09e8823c05d021a72998dd9b948cfd124bb299e04186ffb11fec12f5d984b.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/Clean Gameview.jpg",
-        name: "Clean Gameview",
-        version: "v1.0",
-        author: "SuchMeme",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "Library",
-      },
-      {
-        id: "16652444b3f25912c80a9b277ea48bb9a86c987f666a84c2005c8b31d6113a67",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/16652444b3f25912c80a9b277ea48bb9a86c987f666a84c2005c8b31d6113a67.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/CootMoon/ColoredKeyboard.jpg",
-        name: "Colored Keyboard",
-        version: "v2.0",
-        author: "CootMoon",
-        last_changed: "2022-07-27T11:57:17-04:00",
-        target: "Keyboard",
-      },
-      {
-        id: "47e57b8f725226771d6f300d02ce55f25a199ab0d4b65810b83b5ebbe3456ea9",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/47e57b8f725226771d6f300d02ce55f25a199ab0d4b65810b83b5ebbe3456ea9.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/ColoredToggles.jpg",
-        name: "Colored Toggles",
-        version: "v1.2",
-        author: "SuchMeme",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "System-Wide",
-      },
-      {
-        id: "0bc7ec2a997860ed0baa8c02fabc90ce2913d24415a8d6c3b122dfc2a067790f",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/0bc7ec2a997860ed0baa8c02fabc90ce2913d24415a8d6c3b122dfc2a067790f.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/Beebles/ColorfulRecent.jpg",
-        name: "Colorful Recent",
-        version: "v1.0",
-        author: "Beebles",
-        last_changed: "2022-07-28T03:39:01+02:00",
-        target: "Home",
-      },
-      {
-        id: "5353bc772d54542d523c1d77a3d974aecea8e5979b35031c7e1741baaf668119",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/5353bc772d54542d523c1d77a3d974aecea8e5979b35031c7e1741baaf668119.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/Ducky/preview.jpg",
-        name: "Ducky's Wallpapers",
-        version: "v1.0",
-        author: "Ducky/CaSquall",
-        last_changed: "2022-07-28T02:01:17+02:00",
-        target: "Library",
-      },
-      {
-        id: "01d1d2c3ac29f29334320a2ed6fa8de99c5c5b5f781fca4df3be4a1c3c24ac09",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/01d1d2c3ac29f29334320a2ed6fa8de99c5c5b5f781fca4df3be4a1c3c24ac09.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Fonts.jpg",
-        name: "Fonts",
-        version: "1.0",
-        author: "EMERALD#0874",
-        last_changed: "2022-07-27T23:38:54-05:00",
-        target: "System-Wide",
-      },
-      {
-        id: "1a56749a70601b0a0bdb05e4c1d9c2322995702478678abfe5375a2b6005377e",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/1a56749a70601b0a0bdb05e4c1d9c2322995702478678abfe5375a2b6005377e.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Galactic.jpg",
-        name: "Galactic",
-        version: "1.1",
-        author: "EMERALD#0874",
-        last_changed: "2022-07-27T23:38:54-05:00",
-        target: "System-Wide",
-      },
-      {
-        id: "682525643fdcbad7cc0e83583031024f865fe080ca034c1afe5db4c7a8780b1c",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/682525643fdcbad7cc0e83583031024f865fe080ca034c1afe5db4c7a8780b1c.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/MoreLibraryIcons.jpg",
-        name: "More Library Icons",
-        version: "v1.0",
-        author: "SuchMeme",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "Library",
-      },
-      {
-        id: "204f20e8b57ee868aa8bda0e91fe99d0cae8d0cd72387435c53ca7955f48b582",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/204f20e8b57ee868aa8bda0e91fe99d0cae8d0cd72387435c53ca7955f48b582.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Obsidian.jpg",
-        name: "Obsidian",
-        version: "1.0",
-        author: "EMERALD#0874",
-        last_changed: "2022-07-27T23:38:54-05:00",
-        target: "System-Wide",
-      },
-      {
-        id: "2e57732dd33dff7e08fa7df13500ca7c4a9975082279d044917100543956e9a2",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/2e57732dd33dff7e08fa7df13500ca7c4a9975082279d044917100543956e9a2.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/Party Wumpus/RGB keyboard.jpg",
-        name: "RGB Keyboard",
-        version: "v5.0",
-        author: "Party Wumpus",
-        last_changed: "2022-07-22T03:11:44+02:00",
-        target: "Keyboard",
-      },
-      {
-        id: "e342f1c8dc3ec48ee0f00dcd12ab4747d94b9248ea1b07f68bbc142433077c09",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/e342f1c8dc3ec48ee0f00dcd12ab4747d94b9248ea1b07f68bbc142433077c09.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/EMERALD/Round.jpg",
-        name: "Round",
-        version: "1.2",
-        author: "EMERALD#0874",
-        last_changed: "2022-07-27T23:38:54-05:00",
-        target: "System-Wide",
-      },
-      {
-        id: "49c619bbe0c794f91c95665512704a6a2b0fc6a875f85ff752448f18e765a1c9",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/49c619bbe0c794f91c95665512704a6a2b0fc6a875f85ff752448f18e765a1c9.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/CootMoon/RoundedKeyboard.jpg",
-        name: "Rounded Keyboard",
-        version: "v2.0",
-        author: "CootMoon",
-        last_changed: "2022-07-28T01:59:09+02:00",
-        target: "Keyboard",
-      },
-      {
-        id: "46be6bc50fbd17ca23681b2f8b3d8f8028a226e166618c2d50f7b0deadb6ad36",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/46be6bc50fbd17ca23681b2f8b3d8f8028a226e166618c2d50f7b0deadb6ad36.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/classic.jpg",
-        name: "SDH-ClassicTheme",
-        version: "v0.2",
-        author: "NegativeI0N",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "System-Wide",
-      },
-      {
-        id: "6d9a2710533515fe9ab542599ab0e65cf8849e6d0332e1ebe13ae8dc0eaa1b0c",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/6d9a2710533515fe9ab542599ab0e65cf8849e6d0332e1ebe13ae8dc0eaa1b0c.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/static-background.jpg",
-        name: "Static Background",
-        version: "v1.0",
-        author: "SuchMeme",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "Home",
-      },
-      {
-        id: "43705eea88afe1cc4a990d37cc1208538e82a34bceb4a53ebafdcd16f8ed8d8c",
-        download_url:
-          "https://s3.eu-central-003.backblazeb2.com/deck-themes/43705eea88afe1cc4a990d37cc1208538e82a34bceb4a53ebafdcd16f8ed8d8c.zip",
-        preview_image:
-          "https://raw.githubusercontent.com/suchmememanyskill/CssLoader-ThemeDb/main/images/SuchMeme/switchlikehome.jpg",
-        name: "Switch Like Home",
-        version: "v1.0",
-        author: "SuchMeme",
-        last_changed: "2022-07-21T18:35:13+02:00",
-        target: "Home",
-      },
-    ]);
+    getThemes();
   }, []);
 
   const sortOptions = useMemo(
@@ -225,8 +26,6 @@ export default function Home() {
     ],
     []
   );
-
-  const [modalImgUrl, setModalImg] = useState("");
 
   const [selectedSort, setSort] = useState(1);
   const [searchFieldValue, setSearch] = useState("");
@@ -423,6 +222,13 @@ export default function Home() {
                           {e.version}
                         </span>
                       </div>
+                      <div>
+                        <a
+                          onClick={() => window.open(e.download_url)}
+                          className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
+                          Download
+                        </a>
+                      </div>
                       <div
                         className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
                         style={{
@@ -434,9 +240,16 @@ export default function Home() {
               );
             })}
         </div>
+        <div className='pb-2 text-2xl'>
+          <span
+            className='cursor-pointer text-sky-400 hover:text-emerald-400 transition-colors'
+            onClick={() => getThemes()}>
+            Reload Themes
+          </span>
+        </div>
         <div className='flex flex-col md:flex-row text-xl text-center'>
           <a
-            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline'
+            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline transition-colors'
             onClick={() =>
               window.open("https://github.com/suchmememanyskill/SDH-CssLoader")
             }>
@@ -444,7 +257,7 @@ export default function Home() {
           </a>
           <div className='px-0 md:px-5' />
           <a
-            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline'
+            className='cursor-pointer text-zinc-400 hover:text-sky-400 underline transition-colors'
             onClick={() =>
               window.open(
                 "https://github.com/suchmememanyskill/CssLoader-ThemeDb"
