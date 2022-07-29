@@ -5,8 +5,6 @@ export default function Document() {
     <Html>
       <Head>
         <link rel='icon' type='image/x-conl' href='/fav.ico' />
-
-        <title>CssLoader - Theme Browser</title>
         <meta name='title' content='CssLoader - Theme Browser' />
         <meta
           name='description'

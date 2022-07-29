@@ -137,6 +137,7 @@ export default function Home() {
                     : e.target === selectedTarget.label
                 )
                 .map((e, i) => {
+                  console.log(e);
                   return (
                     // The outer 2 most divs are the background darkened/blurred image, and everything inside is the text/image/buttons
                     <>
@@ -226,9 +227,9 @@ export default function Home() {
                           </div>
                           <div>
                             <a
-                              onClick={() => window.open(e.download_url)}
+                              onClick={() => window.open(e.source)}
                               className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
-                              Download
+                              View Source
                             </a>
                           </div>
                           <div
