@@ -104,142 +104,149 @@ export default function Home() {
             </select>
           </div>
         </div>
-        <div className='flex flex-wrap items-center justify-center'>
-          {themeArr
-            .filter(searchFilter)
-            .sort((a, b) => {
-              // This handles the sort option the user has chosen
-              // 1: A-Z, 2: Z-A, 3: New-Old, 4: Old-New
-              switch (selectedSort) {
-                case 2:
-                  // localeCompare just sorts alphabetically
-                  return b.name.localeCompare(a.name);
-                case 3:
+        {typeof window !== undefined ? (
+          <>
+            <div className='flex flex-wrap items-center justify-center'>
+              {themeArr
+                .filter(searchFilter)
+                .sort((a, b) => {
+                  // This handles the sort option the user has chosen
+                  // 1: A-Z, 2: Z-A, 3: New-Old, 4: Old-New
+                  switch (selectedSort) {
+                    case 2:
+                      // localeCompare just sorts alphabetically
+                      return b.name.localeCompare(a.name);
+                    case 3:
+                      return (
+                        new Date(b.last_changed).valueOf() -
+                        new Date(a.last_changed).valueOf()
+                      );
+                    case 4:
+                      return (
+                        new Date(a.last_changed).valueOf() -
+                        new Date(b.last_changed).valueOf()
+                      );
+                    default:
+                      // This is just A-Z
+                      return a.name.localeCompare(b.name);
+                  }
+                })
+                .filter((e) =>
+                  selectedTarget.label === "Any"
+                    ? true
+                    : e.target === selectedTarget.label
+                )
+                .map((e, i) => {
                   return (
-                    new Date(b.last_changed).valueOf() -
-                    new Date(a.last_changed).valueOf()
-                  );
-                case 4:
-                  return (
-                    new Date(a.last_changed).valueOf() -
-                    new Date(b.last_changed).valueOf()
-                  );
-                default:
-                  // This is just A-Z
-                  return a.name.localeCompare(b.name);
-              }
-            })
-            .filter((e) =>
-              selectedTarget.label === "Any"
-                ? true
-                : e.target === selectedTarget.label
-            )
-            .map((e, i) => {
-              return (
-                // The outer 2 most divs are the background darkened/blurred image, and everything inside is the text/image/buttons
-                <>
-                  <article
-                    key={`Theme_${e.name}`}
-                    className='CssLoader_ThemeBrowser_SingleItem_BgImage md:w-[260px] w-full'
-                    style={{
-                      backgroundImage: 'url("' + e.preview_image + '")',
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                      borderRadius: "5px",
-                      marginLeft: "10px",
-                      marginRight: "10px",
-                      marginBottom: "20px",
-                    }}>
-                    <div
-                      className='CssLoader_ThemeBrowser_SingleItem_BgOverlay'
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        background: "RGBA(0,0,0,0.8)",
-                        backdropFilter: "blur(5px)",
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "3px",
-                      }}>
-                      <span
-                        className='CssLoader_ThemeBrowser_SingleItem_ThemeName'
+                    // The outer 2 most divs are the background darkened/blurred image, and everything inside is the text/image/buttons
+                    <>
+                      <article
+                        key={`Theme_${e.name}`}
+                        className='CssLoader_ThemeBrowser_SingleItem_BgImage md:w-[260px] w-full'
                         style={{
-                          marginTop: "5px",
-                          fontSize: "1.5em",
-                          fontWeight: "bold",
-                        }}>
-                        {e.name}
-                      </span>
-                      {selectedTarget.label === "Any" && (
-                        <span
-                          className='CssLoader_ThemeBrowser_SingleItem_ThemeTarget'
-                          style={{
-                            marginTop: "-6px",
-                            fontSize: "1em",
-                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
-                          }}>
-                          {e.target}
-                        </span>
-                      )}
-                      <div
-                        className='CssLoader_ThemeBrowser_SingleItem_PreviewImage'
-                        style={{
-                          width: "240px",
                           backgroundImage: 'url("' + e.preview_image + '")',
                           backgroundSize: "cover",
                           backgroundRepeat: "no-repeat",
-                          height: "150px",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      />
-                      <div
-                        className='CssLoader_ThemeBrowser_SingleItem_AuthorVersionContainer'
-                        style={{
-                          width: "240px",
-                          textAlign: "center",
-                          display: "flex",
+                          backgroundPosition: "center",
+                          borderRadius: "5px",
+                          marginLeft: "10px",
+                          marginRight: "10px",
+                          marginBottom: "20px",
                         }}>
-                        <span
-                          className='CssLoader_ThemeBrowser_SingleItem_AuthorText'
+                        <div
+                          className='CssLoader_ThemeBrowser_SingleItem_BgOverlay'
                           style={{
-                            marginRight: "auto",
-                            fontSize: "1em",
-                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            background: "RGBA(0,0,0,0.8)",
+                            backdropFilter: "blur(5px)",
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: "3px",
                           }}>
-                          {e.author}
-                        </span>
-                        <span
-                          className='CssLoader_ThemeBrowser_SingleItem_VersionText'
-                          style={{
-                            marginLeft: "auto",
-                            fontSize: "1em",
-                            textShadow: "rgb(48, 48, 48) 0px 0 10px",
-                          }}>
-                          {e.version}
-                        </span>
-                      </div>
-                      <div>
-                        <a
-                          onClick={() => window.open(e.download_url)}
-                          className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
-                          Download
-                        </a>
-                      </div>
-                      <div
-                        className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
-                        style={{
-                          width: "245px",
-                        }}></div>
-                    </div>
-                  </article>
-                </>
-              );
-            })}
-        </div>
+                          <span
+                            className='CssLoader_ThemeBrowser_SingleItem_ThemeName'
+                            style={{
+                              marginTop: "5px",
+                              fontSize: "1.5em",
+                              fontWeight: "bold",
+                            }}>
+                            {e.name}
+                          </span>
+                          {selectedTarget.label === "Any" && (
+                            <span
+                              className='CssLoader_ThemeBrowser_SingleItem_ThemeTarget'
+                              style={{
+                                marginTop: "-6px",
+                                fontSize: "1em",
+                                textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                              }}>
+                              {e.target}
+                            </span>
+                          )}
+                          <div
+                            className='CssLoader_ThemeBrowser_SingleItem_PreviewImage'
+                            style={{
+                              width: "240px",
+                              backgroundImage: 'url("' + e.preview_image + '")',
+                              backgroundSize: "cover",
+                              backgroundRepeat: "no-repeat",
+                              height: "150px",
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                            }}
+                          />
+                          <div
+                            className='CssLoader_ThemeBrowser_SingleItem_AuthorVersionContainer'
+                            style={{
+                              width: "240px",
+                              textAlign: "center",
+                              display: "flex",
+                            }}>
+                            <span
+                              className='CssLoader_ThemeBrowser_SingleItem_AuthorText'
+                              style={{
+                                marginRight: "auto",
+                                fontSize: "1em",
+                                textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                              }}>
+                              {e.author}
+                            </span>
+                            <span
+                              className='CssLoader_ThemeBrowser_SingleItem_VersionText'
+                              style={{
+                                marginLeft: "auto",
+                                fontSize: "1em",
+                                textShadow: "rgb(48, 48, 48) 0px 0 10px",
+                              }}>
+                              {e.version}
+                            </span>
+                          </div>
+                          <div>
+                            <a
+                              onClick={() => window.open(e.download_url)}
+                              className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
+                              Download
+                            </a>
+                          </div>
+                          <div
+                            className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
+                            style={{
+                              width: "245px",
+                            }}></div>
+                        </div>
+                      </article>
+                    </>
+                  );
+                })}
+            </div>
+          </>
+        ) : (
+          <h1>Loading...</h1>
+        )}
+
         <div className='pb-2 text-2xl'>
           <span
             className='cursor-pointer text-sky-400 hover:text-emerald-400 transition-colors'
