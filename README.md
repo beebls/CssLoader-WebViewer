@@ -1,21 +1,16 @@
-# Liftris Website (liftris.beebl.es)
+# [CssLoader Theme Browser](https://cssloader.beebl.es)
 
 <div align="center" markdown="1">
-    <img src="https://i.imgur.com/TsQgDm8.png" width="300"></img>
+    <img src="https://i.imgur.com/TqKdVyB.png" width="800"></img>
 </div>
 
 ## App Description
 
-### Your Log Your Way
+CssLoader is a plugin for the Steam Deck Homebrew (Decky) plugin loader, it enables users to design or install custom CSS themes that they can apply to the Steam Deck UI. It has a react-based theme browser that can be accessed from within the plugin, that pulls data from a database and has 1-click installs of themes.
 
-Liftris is a feature-rich workout logging app focused on letting you log the way you want to.
-
-Liftris supports features like custom app themes, slider and increment weights, half reps, and deep insights easily accessible without having to dig through menus.
-
-Designed to be a blank canvas, Liftris lets you log the way you want without worrying about formatting.
+This project just ports my front-end code for the Steam Deck application and turns it into a webpage that is viewable from any device.
 
 ## Website Technical Details
 
-The Liftris website is made with React, using NextJS for static site generation, and is hosted on Netlify.
-
-The design and layout of the site is all custom components and I use TailwindCSS for easier styling.
+Made in React, statically generated with NextJS, and hosted on Netlify.
+The data is grabbed from [a mirror repo](https://github.com/beebls/CssLoader-ThemeDb-Mirror) to ensure CORS compatibility. 
