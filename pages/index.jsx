@@ -1,10 +1,18 @@
 import Head from "next/head";
+import Link from "next/link";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
-export default function Home() {
-  const [themeArr, setThemeArr] = useState([]);
-
+export default function Home({
+  themeArr,
+  setThemeArr,
+  selectedSort,
+  setSort,
+  selectedTarget,
+  setTarget,
+  searchFieldValue,
+  setSearch,
+}) {
   async function getThemes() {
     fetch(
       "https://raw.githubusercontent.com/beebls/CssLoader-ThemeDb-Mirror/main/themes.json"
@@ -26,13 +34,6 @@ export default function Home() {
     ],
     []
   );
-
-  const [selectedSort, setSort] = useState(1);
-  const [searchFieldValue, setSearch] = useState("");
-  const [selectedTarget, setTarget] = useState({
-    data: 1,
-    label: "Any",
-  });
 
   const searchFilter = (e) => {
     // This filter just implements the search stuff
@@ -64,11 +65,6 @@ export default function Home() {
         <title>CssLoader - Theme Browser</title>
       </Head>
       <main className='flex flex-col items-center justify-center'>
-        <div className='flex justify-center p-5 flex-col items-center'>
-          <h1 className='text-3xl md:text-5xl font-extrabold text-center'>
-            CssLoader Theme Browser
-          </h1>
-        </div>
         <div className='flex flex-col md:flex-row items-center justify-center pb-10'>
           <input
             value={searchFieldValue}
@@ -137,7 +133,6 @@ export default function Home() {
                     : e.target === selectedTarget.label
                 )
                 .map((e, i) => {
-                  console.log(e);
                   return (
                     // The outer 2 most divs are the background darkened/blurred image, and everything inside is the text/image/buttons
                     <>
@@ -226,11 +221,11 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <a
-                              onClick={() => window.open(e.source)}
-                              className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
-                              View Source
-                            </a>
+                            <Link href={`/theme/${e.id.slice(0, 9)}`}>
+                              <a className='cursor-pointer text-xl text-[rgba(255,255,255,0.6)]'>
+                                View Details
+                              </a>
+                            </Link>
                           </div>
                           <div
                             className='CssLoader_ThemeBrowser_SingleItem_InstallButtonContainer'
