@@ -27,10 +27,10 @@ export default function Home({
 
   const sortOptions = useMemo(
     () => [
-      { data: 1, label: "Name: A-Z" },
-      { data: 2, label: "Name: Z-A" },
-      { data: 3, label: "Date: Newest-Oldest" },
-      { data: 4, label: "Date: Oldest-Newest" },
+      { data: 3, label: "Last Updated (Newest)" },
+      { data: 4, label: "Last Updated (Oldest)" },
+      { data: 1, label: "Alphabetical (A to Z)" },
+      { data: 2, label: "Alphabetical (Z to A)" },
     ],
     []
   );
@@ -54,7 +54,7 @@ export default function Home({
       themeArr.filter(searchFilter).map((e) => e.target)
     );
     return [
-      { data: 1, label: "Any" },
+      { data: 1, label: "All" },
       ...[...uniqueTargets].map((e, i) => ({ data: i + 2, label: e })),
     ];
   }, [themeArr, searchFilter]);
@@ -62,7 +62,7 @@ export default function Home({
   return (
     <div className='h-full pb-5'>
       <Head>
-        <title>CssLoader - Theme Browser</title>
+        <title>CSSLoader - Theme Browser</title>
       </Head>
       <main className='flex flex-col items-center justify-center'>
         <div className='flex flex-col md:flex-row items-center justify-center pb-10'>
@@ -74,7 +74,7 @@ export default function Home({
             className='bg-gradient-to-tl from-zinc-700 to-zinc-500 px-5 py-2 rounded-3xl border-slate-800 shadow-lg text-zinc-900 placeholder:text-zinc-900 placeholder:text-center placeholder:text-lg caret-zinc-200'
           />
           <div className='md:px-8 py-4 md:py-0'>
-            <span className='font-bold pr-4'>Sort By:</span>
+            <span className='font-bold pr-4'>Sort</span>
             <select
               onChange={(e) => setSort(Number(e.target.value))}
               className='text-black'>
@@ -86,7 +86,7 @@ export default function Home({
             </select>
           </div>
           <div>
-            <span className='font-bold pr-4'>Theme Type:</span>
+            <span className='font-bold pr-4'>Filter</span>
             <select
               onChange={(e) => {
                 setTarget(targetOptions[e.target.value - 1]);
@@ -128,7 +128,7 @@ export default function Home({
                   }
                 })
                 .filter((e) =>
-                  selectedTarget.label === "Any"
+                  selectedTarget.label === "All"
                     ? true
                     : e.target === selectedTarget.label
                 )
@@ -164,9 +164,15 @@ export default function Home({
                           <span
                             className='CssLoader_ThemeBrowser_SingleItem_ThemeName'
                             style={{
+                              textAlign: "center",
                               marginTop: "5px",
-                              fontSize: "1.5em",
+                              fontSize: "1.25em",
                               fontWeight: "bold",
+                              // This stuff here truncates it if it's too long
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              width: "90%",
                             }}>
                             {e.name}
                           </span>

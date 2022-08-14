@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [searchFieldValue, setSearch] = useState("");
   const [selectedTarget, setTarget] = useState({
     data: 1,
-    label: "Any",
+    label: "All",
   });
 
   return (
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         <div className='flex justify-center p-5 flex-col items-center'>
           <Link href='/'>
             <a className='text-3xl md:text-5xl font-extrabold text-center'>
-              CssLoader Theme Browser
+              CSSLoader Theme Browser
             </a>
           </Link>
         </div>
@@ -35,11 +35,11 @@ function MyApp({ Component, pageProps }) {
           selectedTarget={selectedTarget}
           setTarget={setTarget}
         />
-        <footer className='mt-auto ml-auto pr-4 pb-2'>
+        <footer className='mt-auto flex px-4 pb-2'>
           <a
             href='https://beebl.es'
             target='_blank'
-            className='font-medium text-xl transition-all bg-clip-text bg-gradient-to-tl from-zinc-400 to-zinc-200 text-transparent'>
+            className='invisible ml-auto font-medium text-xl transition-all bg-clip-text bg-gradient-to-tl from-zinc-400 to-zinc-200 text-transparent'>
             Site by Beebl.es
           </a>
         </footer>

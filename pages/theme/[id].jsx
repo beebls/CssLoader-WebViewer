@@ -38,7 +38,7 @@ export default function ExpandedView() {
     return (
       <>
         <Head>
-          <title>CssLoader - Invalid Theme</title>
+          <title>CSSLoader - Invalid Theme</title>
         </Head>
         <div className='font-bold flex items-center justify-center text-rose-400 text-4xl'>
           <span>Invalid Theme ID</span>
@@ -52,7 +52,7 @@ export default function ExpandedView() {
       // The outermost div is to push the content down into the visible area
       <>
         <Head>
-          <title>CssLoader - {currentExpandedTheme.name}</title>
+          <title>CSSLoader - {currentExpandedTheme.name}</title>
         </Head>
         <main>
           <div
@@ -86,7 +86,7 @@ export default function ExpandedView() {
                     <b>Version:</b> {currentExpandedTheme.version}
                   </span>
                   <span>
-                    <b>Minimum CssLoader Version:</b>{" "}
+                    <b>Minimum CSSLoader Version:</b>{" "}
                     {calcMinVersion(currentExpandedTheme.manifest_version)}
                   </span>
                   <div className='mt-2'>
@@ -119,7 +119,7 @@ export default function ExpandedView() {
   return (
     <>
       <Head>
-        <title>CssLoader - Loading Theme</title>
+        <title>CSSLoader - Loading Theme</title>
       </Head>
       <div className='font-bold flex items-center justify-center text-cyan-400 text-4xl'>
         <span>Loading...</span>
