@@ -27,10 +27,10 @@ export default function Home({
 
   const sortOptions = useMemo(
     () => [
-      { data: 3, label: "Last Updated (Newest)" },
-      { data: 4, label: "Last Updated (Oldest)" },
-      { data: 1, label: "Alphabetical (A to Z)" },
-      { data: 2, label: "Alphabetical (Z to A)" },
+      { data: 1, label: "Last Updated (Newest)" },
+      { data: 2, label: "Last Updated (Oldest)" },
+      { data: 3, label: "Alphabetical (A to Z)" },
+      { data: 4, label: "Alphabetical (Z to A)" },
     ],
     []
   );
@@ -109,15 +109,15 @@ export default function Home({
                   // This handles the sort option the user has chosen
                   // 1: A-Z, 2: Z-A, 3: New-Old, 4: Old-New
                   switch (selectedSort) {
-                    case 2:
+                    case 4:
                       // localeCompare just sorts alphabetically
                       return b.name.localeCompare(a.name);
-                    case 3:
+                    case 1:
                       return (
                         new Date(b.last_changed).valueOf() -
                         new Date(a.last_changed).valueOf()
                       );
-                    case 4:
+                    case 2:
                       return (
                         new Date(a.last_changed).valueOf() -
                         new Date(b.last_changed).valueOf()
