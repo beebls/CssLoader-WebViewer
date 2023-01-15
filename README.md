@@ -1,3 +1,6 @@
+# DEPRECATED
+## This repository is no longer used, CSSLoader & AudioLoader have moved to [deckthemes.com](https://deckthemes.com)
+
 # [CssLoader Theme Browser](https://cssloader.beebl.es)
 
 <div align="center" markdown="1">
